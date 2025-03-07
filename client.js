@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", e => {
     })
 
     b2.addEventListener("click", e => {
-        console.log(`Click on ${e.target.innerHTML}`);
+        console.log(`Click on ${e.target.innerText}`);
         fetch(query2)
             .then(response => {
                 console.log(response);
@@ -27,12 +27,22 @@ window.addEventListener("DOMContentLoaded", e => {
     })
 
     b3.addEventListener("click", e => {
-        console.log(`Click on ${e.target.innerHTML}`);
-        fetch(query3)
+        console.log(`Click on ${e.target.innerText}`);
+        const tmpReq = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+            body: new URLSearchParams({
+                id: 3,
+                token: "ghi"
+            })
+        }
+        fetch(query3, tmpReq)
             .then(response => {
                 console.log(response);
                 display.innerText = `3: ${response.status} ${response.statusText}`
             })
-            .catch(e => console.error(e.message))
+            .catch(e => console.error(e.message));
     })
 })
